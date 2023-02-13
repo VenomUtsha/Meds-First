@@ -1,0 +1,23 @@
+
+html {
+  font-size: 62.5%;
+  /* 16px=1rem so 62.5% of 16px=10px 1rem=10px */
+}
+
+.main {
+
+
+
+  /* background-image:url(/src/images/sun-tornado.svg); */
+  /* background-attachment: fixed; */
+
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover
+
+ 
+  /* background by SVGBackgrounds.com */
+}

@@ -1,0 +1,23 @@
+footer {
+  margin-top: 1vmax;
+  padding: 2vmax;
+  background-color: black;
+  color: aliceblue;
+  display: flex;
+  align-items: center;
+}
+
+.midfooter {
+  width: 100%;
+  text-align: center;
+}
+
+.midfooter > h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2rem;
+}
+.midfooter > p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+}
+
