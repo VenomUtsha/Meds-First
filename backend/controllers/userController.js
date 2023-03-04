@@ -17,19 +17,19 @@ const fs = require("fs");
 
 //Register a user
 
-exports.registerUser = catchAsyncErrors(async (req, res, next) => {
-  const { name, email, password, phone, bankAccount } = req.body
+exports.registerUser = catchAsyncErrors(async(req,res,next)=>{
+    const {name,email,password,phone,bankAccount} = req.body 
+    
+    const user = await User.create({
+        name,email,password,phone,bankAccount,
+        avatar:{
+            public_id:"This is a sample id",
+            url:"This is profile pic url"
+        }
+    })
+    
 
-  const user = await User.create({
-    name, email, password, phone, bankAccount,
-    avatar: {
-      public_id: "This is a sample id",
-      url: "This is profile pic url"
-    }
-  })
-
-
-  sendToken(user, 201, res)
+    sendToken(user,201,res)
 })
 
 
@@ -56,7 +56,7 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
 //           data: fs.readFileSync("uploads/"+req.file.filename),
 //           contentType: "image/png",
 //         },
-
+    
 //       });
 
 
@@ -99,47 +99,47 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
 
 //Login user
 
-exports.loginUser = catchAsyncErrors(async (req, res, next) => {
-  const { email, password } = req.body
+exports.loginUser = catchAsyncErrors(async(req,res,next)=>{
+    const {email,password} = req.body
+    
+    if(!email || !password){
+        return next(new ErrorHandler("Please enter email and password to login",400))
+    }
 
-  if (!email || !password) {
-    return next(new ErrorHandler("Please enter email and password to login", 400))
-  }
+    const user = await User.findOne({email:email}).select("+password")
+    //console.log("login")
+    //console.log(user)
+    
+    if(!user){
+        return next(new ErrorHandler("Invalid email or password",401))
+    }
 
-  const user = await User.findOne({ email: email }).select("+password")
-  //console.log("login")
-  //console.log(user)
+    const isPasswordMatched = await user.ComparePassword(password)
 
-  if (!user) {
-    return next(new ErrorHandler("Invalid email or password", 401))
-  }
+    if(!isPasswordMatched){
+        return next(new ErrorHandler("Invalid email or password",401))
 
-  const isPasswordMatched = await user.ComparePassword(password)
+    }
 
-  if (!isPasswordMatched) {
-    return next(new ErrorHandler("Invalid email or password", 401))
-
-  }
-
-  sendToken(user, 200, res)
-
+    sendToken(user,200,res)
+  
 })
 
 
 //Log out User
 
-exports.logOut = catchAsyncErrors(async (req, res, next) => {
+exports.logOut = catchAsyncErrors(async(req,res,next)=>{
 
-  res.cookie("token", null, {
-    expires: new Date(Date.now()),
-    httpOnly: true,
+   res.cookie("token",null,{
+       expires:new Date(Date.now()),
+       httpOnly:true,
 
-  })
+   })
 
-  res.status(200).json({
-    success: true,
-    message: "Logged out successfully",
-  })
+   res.status(200).json({
+       success:true,
+       message:"Logged out successfully",
+   })
 
 
 })
@@ -168,7 +168,7 @@ exports.logOut = catchAsyncErrors(async (req, res, next) => {
 //     },
 //   });
 
-
+  
 //   saveImage
 //     .save()
 //     .then((res) => {
@@ -190,29 +190,29 @@ exports.logOut = catchAsyncErrors(async (req, res, next) => {
 
 // exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 //     const user = await User.findOne({ email: req.body.email });
-
+  
 //     if (!user) {
 //       return next(new ErrorHandler("User not found", 404));
 //     }
-
+  
 //     // Get ResetPassword Token
 //     const resetToken = user.getPasswordResetToken();
-
+  
 //     await user.save({ validateBeforeSave: false });
-
+  
 //     const resetPasswordUrl = `${req.protocol}://${req.get(
 //       "host"
 //     )}/password/reset/${resetToken}`;
-
+  
 //     const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\nIf you have not requested this email then, please ignore it.`;
-
+  
 //     try {
 //       await sendEmail({
 //         email: user.email,
 //         subject: `Ecommerce Password Recovery`,
 //         message,
 //       });
-
+  
 //       res.status(200).json({
 //         success: true,
 //         message: `Email sent to ${user.email} successfully`,
@@ -220,9 +220,9 @@ exports.logOut = catchAsyncErrors(async (req, res, next) => {
 //     } catch (error) {
 //       user.resetPasswordToken = undefined;
 //       user.resetPasswordExpire = undefined;
-
+  
 //       await user.save({ validateBeforeSave: false });
-
+  
 //       return next(new ErrorHandler(error.message, 500));
 //     }
 //   });
@@ -239,12 +239,12 @@ exports.logOut = catchAsyncErrors(async (req, res, next) => {
 //       .createHash("sha256")
 //       .update(req.params.token)
 //       .digest("hex");
-
+  
 //     const user = await User.findOne({
 //       resetPasswordToken,
 //       resetPasswordExpire: { $gt: Date.now() },
 //     });
-
+  
 //     if (!user) {
 //       return next(
 //         new ErrorHandler(
@@ -253,15 +253,15 @@ exports.logOut = catchAsyncErrors(async (req, res, next) => {
 //         )
 //       );
 //     }
-
+  
 //     if (req.body.password !== req.body.confirmPassword) {
 //       return next(new ErrorHandler("Password does not Match", 400));
 //     }
-
+  
 //     user.password = req.body.password;
 //     user.resetPasswordToken = undefined;
 //     user.resetPasswordExpire = undefined;
-
+  
 //     await user.save();
 
 //   //  await user.save((err, result) => {
@@ -276,7 +276,7 @@ exports.logOut = catchAsyncErrors(async (req, res, next) => {
 //   //   });
 
 
-
+  
 //     sendToken(user, 200, res);
 //   });
 
@@ -286,7 +286,7 @@ exports.logOut = catchAsyncErrors(async (req, res, next) => {
 exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.user.id);
   console.log("controller user")
-  // const allData = await imageModel.find({userId:'630a8efa0ea95714d750d642'});
+ // const allData = await imageModel.find({userId:'630a8efa0ea95714d750d642'});
 
 
   res.status(200).json({
@@ -319,3 +319,4 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
 
   sendToken(user, 200, res);
 });
+  

@@ -58,8 +58,8 @@ const Profile = () => {
                     <img src={profile} alt="" />
                   </a>
 
-                  <h1>{/*user.name*/}</h1>
-                  <p>{/*user.email*/}</p>
+                  <h1>{user.name}</h1>
+                  <p>{user.email}</p>
                 </div>
               </div>
             </div>
@@ -71,7 +71,7 @@ const Profile = () => {
                     <div className="row">
                       <div className="bio-row">
                         <p>
-                          <span>Name </span>: {/*user.name*/}
+                          <span>Name </span>: {user.name}
                         </p>
                       </div>
                       <div className="bio-row">
@@ -82,17 +82,17 @@ const Profile = () => {
 
                       <div className="bio-row">
                         <p>
-                          <span>Email </span>: {/*user.email*/}
+                          <span>Email </span>: {user.email}
                         </p>
                       </div>
                       <div className="bio-row">
                         <p>
-                          <span>Mobile </span>: +88 {/*user.phone*/}
+                          <span>Mobile </span>: +88 {user.phone}
                         </p>
                       </div>
                       <div className="bio-row">
                         <p>
-                          <span>Bank Account </span>: {/*user.bankAccount*/}
+                          <span>Bank Account </span>: {user.bankAccount}
                         </p>
                       </div>
                     </div>

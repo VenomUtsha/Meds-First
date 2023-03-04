@@ -11,8 +11,8 @@ exports.createBankAccount = async (req, res, next) => {
   res.status(200).json({
     success: true,
     bank,
-  });
-};
+  }); 
+}; 
 
 exports.bankInfo = catchAsyncErrors(async (req, res, next) => {
   //const { bankAccount } = req.body;
@@ -63,14 +63,14 @@ exports.usertransaction = catchAsyncErrors(async (req, res, next) => {
 exports.admintransaction = catchAsyncErrors(async (req, res, next) => {
 
   const { transactionId } = req.body;
-
+  
 
   const ecommerceAccount = 12345;
 
   const adminTransaction = await transactionModel.findOne({
     transactionId: transactionId,
   });
-
+  
   adminTransaction.status = 1;
   await adminTransaction.save();
 
@@ -78,7 +78,7 @@ exports.admintransaction = catchAsyncErrors(async (req, res, next) => {
   const totalAmount = adminTransaction.totalAmount;
 
   const bankInfoUser = await Bank.findOne({ accountNumber: userBankaccount });
-  // console.log("check",bankInfoUser);
+// console.log("check",bankInfoUser);
 
   const bankInfoEcommerce = await Bank.findOne({
     accountNumber: ecommerceAccount,
@@ -123,9 +123,9 @@ exports.suppliertransaction = catchAsyncErrors(async (req, res, next) => {
     accountNumber: supplierAccount,
   });
 
-  bankInfoEcommerce.inAmount = bankInfoEcommerce.inAmount - 0.8 * totalAmount;
+  bankInfoEcommerce.inAmount = bankInfoEcommerce.inAmount - 0.8*totalAmount ;
 
-  bankInfoEcommerce.outAmount = bankInfoEcommerce.outAmount + 0.8 * totalAmount;
+  bankInfoEcommerce.outAmount = bankInfoEcommerce.outAmount + 0.8*totalAmount ;
 
   await bankInfoEcommerce.save();
 
@@ -135,30 +135,30 @@ exports.suppliertransaction = catchAsyncErrors(async (req, res, next) => {
   await bankInfoSupplier.save();
 
 
-  const order = supplierTransaction.order;
+  const order  = supplierTransaction.order;
 
   // console.log(order);
 
 
   //changing quantity
-  order.forEach(async (element, index, array) => {
+  order.forEach(async(element, index, array) => {
+    
+    const productId = element.productId  
+    
+  
+      const product =await Product.findById(productId); 
 
-    const productId = element.productId
+      let changeStock = Number(element.quantity);
+      let stock = Number(product.stock)
+
+      product.stock = stock - changeStock;
+
+      await product.save();
+
+     // console.log(product);
 
 
-    const product = await Product.findById(productId);
-
-    let changeStock = Number(element.quantity);
-    let stock = Number(product.stock)
-
-    product.stock = stock - changeStock;
-
-    await product.save();
-
-    // console.log(product);
-
-
-  });
+});
 
 
 

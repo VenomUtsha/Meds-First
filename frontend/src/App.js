@@ -15,6 +15,9 @@ import Shipping from "./component/Cart/Shipping"
 import ConfirmOrder from "./component/Cart/ConfirmOrder.js"
 import Image from "./component/User/image";
 import Bank from "./component/Bank/Bank"
+import SecondHomeMain from "./component/SecondHome/SecondHomeMain"
+import Appointment from "./component/SecondHome/appointment";
+import PersonalAppointment from "./component/SecondHome/personalAppointment";
 
 import Payment from "./component/Cart/Payment.js"
 import Admin from "./component/Admin/Admin"
@@ -39,8 +42,16 @@ function App() {
 
       <Routes>
 
-        {<Route exact path="/login" element={<LogInSignUp />} />}
-        {<Route exact path="/" element={<Home />} />}
+        <Route exact path="/" element={<LogInSignUp />} />
+
+        <Route exact path="/secondhome" element={<SecondHomeMain />} />
+        <Route exact path="/appointment" element={<Appointment />} />
+        <Route exact path="/personalappointment" element={<PersonalAppointment />} />
+
+
+
+
+
         <Route exact path="/image" element={<Image />} />
         <Route exact path="/product/:id" element={<ProductDetails />} />
         <Route exact path="/home" element={<Home />} />
@@ -49,9 +60,9 @@ function App() {
         <Route exact path="/shipping" element={<Shipping />} />
         <Route exact path="/confirmOrder" element={<ConfirmOrder />} />
         <Route exact path="/payment" element={<Payment />} />
-        {/* <Route exact path="/admin" element={<Admin />} />
-        <Route exact path="/supplier" element={<Supplier />} />  */}
-
+        <Route exact path="/admin" element={<Admin />} />
+        <Route exact path="/supplier" element={<Supplier />} />
+        <Route exact path="/bankinfo" element={<Bank />} />
 
 
 
