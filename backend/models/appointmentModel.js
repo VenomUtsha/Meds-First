@@ -6,6 +6,9 @@ const appointmentModelSchema = new mongoose.Schema({
     userId:{
         type:String,
     },
+    name:{
+        type:String,
+    },
     service:{
         type:String,
     },      
