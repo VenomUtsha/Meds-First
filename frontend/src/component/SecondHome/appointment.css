@@ -1,0 +1,92 @@
+.root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background-color: #138f96;
+    min-height: 100vh;
+}
+
+
+h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.Grid {
+    text-align: center;
+}
+
+.MuiCard-root {
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: all 0.2s ease-in-out;
+}
+
+.MuiCard-root:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.MuiCardHeader-root {
+    background-color: #19d9d6;
+    color: #fff;
+    padding: 1rem;
+}
+
+.MuiCardHeader-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.MuiCardContent-root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.MuiButton-root {
+    padding: 1rem 2rem;
+    background-color: #fff;
+    color: #6c63ff;
+    border: 2px solid #6c63ff;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.MuiButton-root:hover {
+    background-color: #6c63ff;
+    color: #fff;
+}
+
+.book-appointment {
+    background-color: #d5dbdf;
+    border: none;
+    color: #2a2828;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .book-appointment:hover {
+    background-color: #fff;
+    color: #6c63ff;
+  }
+  

@@ -18,6 +18,8 @@ import Bank from "./component/Bank/Bank"
 import SecondHomeMain from "./component/SecondHome/SecondHomeMain"
 import Appointment from "./component/SecondHome/appointment";
 import PersonalAppointment from "./component/SecondHome/personalAppointment";
+import AdminAppointment from "./component/SecondHome/adminappointdetails";
+
 
 import Payment from "./component/Cart/Payment.js"
 import Admin from "./component/Admin/Admin"
@@ -48,6 +50,7 @@ function App() {
         <Route exact path="/appointment" element={<Appointment />} />
         <Route exact path="/personalappointment" element={<PersonalAppointment />} />
 
+        <Route exact path="/adminappointment" element={<AdminAppointment />} />
 
 
 

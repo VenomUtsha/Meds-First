@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
+import './appointment.css'
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import {
@@ -17,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Appointment = () => {
   const [date, setDate] = useState(new Date());
+  const [name, setName] = useState("");
   const classes = useStyles();
   const data = [
     { service: "Teeth Orthodontics", schedule: "8:00 AM - 9:00 AM" },
@@ -28,6 +30,7 @@ const Appointment = () => {
   const [userId, setuserId] = useState("");
   const [appoint, setAppoint] = useState({
     userId: "",
+    name:"",
     service: "",
     schedule: "",
     date: date.toLocaleDateString(),
@@ -36,9 +39,12 @@ const Appointment = () => {
   const [chk, setChk] = useState({});
   
 
+
   useEffect(() => {
     axios.get(`api/v1/me`).then((res) => {
       setuserId(res.data.user._id);
+      //console.log(res.data.user)
+      setName(res.data.user.name)
     });
   }, []);
 
@@ -46,6 +52,7 @@ const Appointment = () => {
   const appointfun = (elem) => () => {
     
       appoint.userId=userId;
+      appoint.name=name;
       appoint.service=elem.service;
       appoint.schedule= elem.schedule;
       appoint.date=date.toLocaleDateString();
@@ -53,8 +60,7 @@ const Appointment = () => {
       .post(`api/v1/createappointment`, appoint)
       .then((res) => setChk(res.data.appointment))
       .catch((err) => console.log(err, "it has an error"));
-
-     console.log(appoint);
+      // console.log(appoint);
      alert("Appoinment is confirmed");
   };
 

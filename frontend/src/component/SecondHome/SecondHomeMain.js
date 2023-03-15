@@ -28,8 +28,7 @@ const SecondHomeMain = () => {
         <div className="text_heading">Your New Smile Starts Here</div>
         <div className="text">
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry.
+            Welcome to the largest medicine collectiion and easily book doctors appointments
           </p>
         </div>
         <div>

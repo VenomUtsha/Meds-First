@@ -103,11 +103,11 @@ const DrawerComponent = (props) => {
         </div>
 
         <div style={{ marginTop: "2rem", marginBottom: "2rem" }}>
-          <ListItem button onClick={() => navigate('/bankinfo')}>
+          <ListItem button onClick={() => navigate('/PersonalAppointment')}>
             <ListItemIcon>
               <AccountBalanceIcon />
             </ListItemIcon>
-            <ListItemText primary="Bank Info" />
+            <ListItemText primary="My Appointments" />
           </ListItem>
         </div>
 

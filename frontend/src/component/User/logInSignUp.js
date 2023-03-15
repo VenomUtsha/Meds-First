@@ -269,7 +269,7 @@ function Formcomponent() {
       dispatch(clearErrors());
     }
     if (isauthenticated) {
-      navigate("/home");
+      navigate("/secondhome");
     }
   }, [dispatch, error, isauthenticated, navigate]);
 
