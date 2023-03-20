@@ -65,7 +65,7 @@ exports.admintransaction = catchAsyncErrors(async (req, res, next) => {
   const { transactionId } = req.body;
   
 
-  const ecommerceAccount = 12345;
+  //const ecommerceAccount = 12345;
 
   const adminTransaction = await transactionModel.findOne({
     transactionId: transactionId,
