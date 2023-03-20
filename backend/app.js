@@ -34,52 +34,52 @@ app.use("/api/v1", appointment);
 
 app.use(errorMiddleWare);
 
-///image upload
+// ///image upload
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads");
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
-  },
-});
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, "uploads");
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, file.originalname);
+//   },
+// });
 
-const upload = multer({ storage: storage });
+// const upload = multer({ storage: storage });
 
-app.post("/upload", upload.single("file"), async (req, res) => {
-  console.log("image inside", req.body.id);
-  const saveImage = imageModel({
-    // userId:req.body.id,
-    userId: req.body.id,
-    img: {
-      data: fs.readFileSync("uploads/" + req.file.filename),
-      contentType: "image/png",
-    },
-  });
+// app.post("/upload", upload.single("file"), async (req, res) => {
+//   console.log("image inside", req.body.id);
+//   const saveImage = imageModel({
+//     // userId:req.body.id,
+//     userId: req.body.id,
+//     img: {
+//       data: fs.readFileSync("uploads/" + req.file.filename),
+//       contentType: "image/png",
+//     },
+//   });
 
-  saveImage
-    .save()
-    .then((res) => {
-      console.log("image is saved");
-    })
-    .catch((err) => {
-      console.log(err, "error has occur");
-    });
+//   saveImage
+//     .save()
+//     .then((res) => {
+//       console.log("image is saved");
+//     })
+//     .catch((err) => {
+//       console.log(err, "error has occur");
+//     });
 
-  res.send("image is saved");
-});
+//   res.send("image is saved");
+// });
 
-app.post("/getImg", async (req, res) => {
-  //console.log("get image")
-  //const {userinfo} = req.body;
-  //console.log(req.body.userinfo)
-  const allData = await imageModel
-    .find({ userId: req.body.userinfo })
-    .sort({ createdAt: -1 });
+// app.post("/getImg", async (req, res) => {
+//   //console.log("get image")
+//   //const {userinfo} = req.body;
+//   //console.log(req.body.userinfo)
+//   const allData = await imageModel
+//     .find({ userId: req.body.userinfo })
+//     .sort({ createdAt: -1 });
 
-  //console.log(allData[0])
-  res.json(allData);
-});
+//   //console.log(allData[0])
+//   res.json(allData);
+
 
 module.exports = app;

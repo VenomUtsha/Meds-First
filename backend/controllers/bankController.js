@@ -74,24 +74,7 @@ exports.admintransaction = catchAsyncErrors(async (req, res, next) => {
   adminTransaction.status = 1;
   await adminTransaction.save();
 
-  const userBankaccount = adminTransaction.bankAccount;
-  const totalAmount = adminTransaction.totalAmount;
-
-  const bankInfoUser = await Bank.findOne({ accountNumber: userBankaccount });
-// console.log("check",bankInfoUser);
-
-  const bankInfoEcommerce = await Bank.findOne({
-    accountNumber: ecommerceAccount,
-  });
-
-  bankInfoUser.inAmount = bankInfoUser.inAmount - totalAmount;
-  bankInfoUser.outAmount = bankInfoUser.outAmount + totalAmount;
-
-  await bankInfoUser.save();
-
-  bankInfoEcommerce.inAmount = bankInfoEcommerce.inAmount + totalAmount;
-
-  await bankInfoEcommerce.save();
+  
 
   res.status(200).json({
     adminTransaction,
@@ -117,48 +100,7 @@ exports.suppliertransaction = catchAsyncErrors(async (req, res, next) => {
   supplierTransaction.status = 2;
   await supplierTransaction.save();
 
-  const totalAmount = supplierTransaction.totalAmount;
-
-  const bankInfoSupplier = await Bank.findOne({
-    accountNumber: supplierAccount,
-  });
-
-  bankInfoEcommerce.inAmount = bankInfoEcommerce.inAmount - 0.8*totalAmount ;
-
-  bankInfoEcommerce.outAmount = bankInfoEcommerce.outAmount + 0.8*totalAmount ;
-
-  await bankInfoEcommerce.save();
-
-
-  bankInfoSupplier.inAmount = bankInfoSupplier.inAmount + 0.8 * totalAmount;
-
-  await bankInfoSupplier.save();
-
-
-  const order  = supplierTransaction.order;
-
-  // console.log(order);
-
-
-  //changing quantity
-  order.forEach(async(element, index, array) => {
-    
-    const productId = element.productId  
-    
   
-      const product =await Product.findById(productId); 
-
-      let changeStock = Number(element.quantity);
-      let stock = Number(product.stock)
-
-      product.stock = stock - changeStock;
-
-      await product.save();
-
-     // console.log(product);
-
-
-});
 
 
 
