@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import CartNav from "../Cart/allCartNav";
 
+
 const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

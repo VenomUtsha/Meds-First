@@ -79,7 +79,7 @@ const Payment = () => {
         {/* <CheckoutSteps activeStep={2} /> */}
         <div className="paymentContainer">
           <form className="paymentForm" onSubmit={(e) => submitHandler(e)}>
-            <Typography>Bank Info</Typography>
+            <Typography>Confirm</Typography>
             <div>
               <CreditCardIcon />
               <input

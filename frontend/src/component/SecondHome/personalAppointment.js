@@ -102,4 +102,4 @@ const PersonalAppointment = () => {
   );
 };
 
-export default PersonalAppointment;
+export default PersonalAppointment; 

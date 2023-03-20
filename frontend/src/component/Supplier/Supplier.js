@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
-import "./Supplier.css";
+//import "./Supplier.css";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import OrderItem from "../Supplier/OrderItemSupplier";

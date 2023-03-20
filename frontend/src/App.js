@@ -14,7 +14,7 @@ import Profile from "./component/User/profile"
 import Shipping from "./component/Cart/Shipping"
 import ConfirmOrder from "./component/Cart/ConfirmOrder.js"
 import Image from "./component/User/image";
-import Bank from "./component/Bank/Bank"
+//import Bank from "./component/Bank/Bank"
 import SecondHomeMain from "./component/SecondHome/SecondHomeMain"
 import Appointment from "./component/SecondHome/appointment";
 import PersonalAppointment from "./component/SecondHome/personalAppointment";
@@ -65,7 +65,7 @@ function App() {
         <Route exact path="/payment" element={<Payment />} />
         <Route exact path="/admin" element={<Admin />} />
         <Route exact path="/supplier" element={<Supplier />} />
-        <Route exact path="/bankinfo" element={<Bank />} />
+        {/* <Route exact path="/bankinfo" element={<Bank />} /> */}
 
 
 

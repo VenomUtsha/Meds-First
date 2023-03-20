@@ -73,7 +73,7 @@ const DrawerComponent = (props) => {
             <ListItemIcon>
               <LoginIcon />
             </ListItemIcon>
-            <ListItemText primary="Log in" />
+            <ListItemText primary="Log out" />
           </ListItem>
         </div>
 

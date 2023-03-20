@@ -30,14 +30,14 @@ const Appointment = () => {
   const [userId, setuserId] = useState("");
   const [appoint, setAppoint] = useState({
     userId: "",
-    name:"",
+    name: "",
     service: "",
     schedule: "",
     date: date.toLocaleDateString(),
   });
 
   const [chk, setChk] = useState({});
-  
+
 
 
   useEffect(() => {
@@ -50,22 +50,22 @@ const Appointment = () => {
 
   console.log(userId);
   const appointfun = (elem) => () => {
-    
-      appoint.userId=userId;
-      appoint.name=name;
-      appoint.service=elem.service;
-      appoint.schedule= elem.schedule;
-      appoint.date=date.toLocaleDateString();
-      axios
+
+    appoint.userId = userId;
+    appoint.name = name;
+    appoint.service = elem.service;
+    appoint.schedule = elem.schedule;
+    appoint.date = date.toLocaleDateString();
+    axios
       .post(`api/v1/createappointment`, appoint)
       .then((res) => setChk(res.data.appointment))
       .catch((err) => console.log(err, "it has an error"));
-      // console.log(appoint);
-     alert("Appoinment is confirmed");
+    // console.log(appoint);
+    alert("Appoinment is confirmed");
   };
 
   // useEffect(() => {
-    
+
   // }, [appoint]);
 
   return (
