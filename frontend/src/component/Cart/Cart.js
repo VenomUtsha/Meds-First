@@ -100,6 +100,7 @@ const Cart = () => {
                   <button onClick={checkoutHandler}>
                     <h4>Procceed Transaction</h4>
                   </button>
+                  
                 </div>
               </div>
             </div>

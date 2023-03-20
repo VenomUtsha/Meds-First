@@ -26,3 +26,5 @@ const CartItemCard = ({ item }) => {
 };
 
 export default CartItemCard;
+
+
